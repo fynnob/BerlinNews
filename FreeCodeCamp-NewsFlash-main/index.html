@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Language Preference</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        form {
+            margin-top: 20px;
+        }
+        select {
+            padding: 15px; /* Increase padding for height */
+            font-size: 18px; /* Increase font size */
+        }
+        #redirect-link {
+            margin-top: 20px;
+        }
+   </style>
+</head>
+<body>
+    <h1>Choose Your Preferred Language</h1>
+    <p>Please select the language you prefer:</p>
+    
+    <form action="" method="post">
+        <label for="language">Select Language:</label>
+        <select id="language" name="language">
+            <option value="EN">English</option>
+            <option value="GER">German</option>
+        </select><br><br>
+        <input type="submit" value="Select">
+    </form>
+
+    <!-- Specify the link they should go to below -->
+    <p>After selecting your language, you will be redirected</p>
+    <div id="redirect-link"></div>
+    
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var selectedLanguage = document.getElementById("language").value;
+            
+            // Define the directory paths for the language pages
+            var englishPage = "./EN/index.html";
+            var germanPage = "./GER/index.html";
+            
+            // Define the base URL of your website
+            var baseURL = "";
+            
+            // Create the full URL based on the selected language
+            var redirectLink = selectedLanguage === "EN" ? baseURL + englishPage : baseURL + germanPage;
+            
+            document.getElementById("redirect-link").innerHTML = "<a href='" + redirectLink + "'>" + redirectLink + "</a>";
+            
+            // Redirect the user to the selected page
+            window.location.href = redirectLink;
+        });
+    </script>
+</body>
+</html>
